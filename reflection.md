@@ -9,16 +9,22 @@ answer/context trace trong `artifacts/actual_answers.json` trước khi kết lu
 
 ## 1. Benchmark Results Summary
 
-**Overall pass rate:** Pending real benchmark execution. Core verification is complete: 42/42 public unit tests passed and the Golden Dataset validator passed on 2026-08-12. No benchmark score is reported without a completed `artifacts/actual_answers.json` produced by the provided RAG system. The RAG run is currently blocked only because `.env` does not contain `OPENAI_API_KEY`.
+**Overall pass rate:** 55.0% (11/20). The RAG run used 9Router at `http://127.0.0.1:20128/v1` with model `gh/gpt-4o-mini`; the full trace is retained in `artifacts/actual_answers.json` and results in `artifacts/benchmark_results.json`.
 
 | Metric | Average | Min | Max | Nhận xét |
 |---|---:|---:|---:|---|
-| Context Recall | Pending | Pending | Pending | Requires recorded retrieval traces from the real RAG run. |
-| Context Precision | Pending | Pending | Pending | Requires recorded retrieval ranking from the real RAG run. |
-| Faithfulness | Pending | Pending | Pending | Requires generated answers and gold evidence. |
-| Relevance | Pending | Pending | Pending | Requires generated answers. |
-| Completeness | Pending | Pending | Pending | Requires generated answers and expected answers. |
-| Overall Score | Pending | Pending | Pending | Must be calculated from the three answer-side metrics only. |
+| Context Recall | 0.899 | 0.364 | 1.000 | Evidence coverage is high overall; A01 is intentionally out of scope. |
+| Context Precision | 0.954 | 0.700 | 1.000 | Retrieved evidence is generally ranked early. |
+| Faithfulness | 0.619 | 0.188 | 1.000 | Weakest aggregate metric; generation/lexical mismatch needs attention. |
+| Relevance | 0.690 | 0.455 | 1.000 | Most answers address the question, with failures in adversarial cases. |
+| Completeness | 0.819 | 0.182 | 1.000 | Policy facts are mostly covered, except the scope response. |
+| Overall Score | 0.710 | 0.331 | 0.876 | Overall is answer-side average only. |
+
+**Verified failure-analysis report:** The three lowest cases were A01 (0.331, hallucination), E05 (0.487, hallucination), and E02 (0.569, off_topic). A01 safely refused legal advice but did not redirect to Northstar-supported topics, so the concise gold answer had low lexical completeness. E05 answered the trigger correctly but added the 80% attendance rule, which was not in the selected gold evidence; this lowered faithfulness. E02 correctly gave 24 hours, but its answer did not repeat every expected lexical token, exposing the limitation of word-overlap scoring.
+
+**5 Whys, actionable root causes:** (1) A01 scored low because the scope response was less complete than the expected redirect; the prompt asks for concise answers; it does not explicitly require an in-scope alternative; therefore add a scope-response template and a regression case that requires an example of supported topics. (2) E05 scored low because the generator included adjacent attendance information; the prompt allows retrieved context broadly; no claim-level grounding filter restricts output to the requested fact; therefore add a question-focused evidence filter and verify Faithfulness on E05. (3) E02 failed despite correct substance because set-overlap treats paraphrase and omitted filler tokens as a gap; the metric is intentionally simplified; therefore retain the case but complement lexical metrics with calibrated LLM/human judging before changing the system.
+
+**Failure clusters and priorities:** Cluster 1 (high) is generation grounding/answer focus, affecting E05 and several low-faithfulness results; add a claim-to-context check. Cluster 2 (medium) is scope and adversarial response completeness, affecting A01/A02/A03; add explicit safe-refusal templates. Cluster 3 (medium) is metric sensitivity to paraphrase, affecting E02; calibrate an LLM judge against human labels. The benchmark's own analyzer counted `off_topic=7` and `hallucination=2`; this is a heuristic label, so trace inspection takes priority over the label alone.
 
 **Score interpretation**
 

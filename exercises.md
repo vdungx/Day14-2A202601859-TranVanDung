@@ -187,26 +187,26 @@ Copy bảng terminal vào đây hoặc điền từ `artifacts/benchmark_results
 
 | ID | Question (short) | Ctx Recall | Ctx Precision | Faithfulness | Relevance | Completeness | Overall | Passed? | Failure Type |
 |---|---|---:|---:|---:|---:|---:|---:|---|---|
-| E01 | | | | | | | | | |
-| E02 | | | | | | | | | |
-| E03 | | | | | | | | | |
-| E04 | | | | | | | | | |
-| E05 | | | | | | | | | |
-| M01 | | | | | | | | | |
-| M02 | | | | | | | | | |
-| M03 | | | | | | | | | |
-| M04 | | | | | | | | | |
-| M05 | | | | | | | | | |
-| M06 | | | | | | | | | |
-| M07 | | | | | | | | | |
-| H01 | | | | | | | | | |
-| H02 | | | | | | | | | |
-| H03 | | | | | | | | | |
-| H04 | | | | | | | | | |
-| H05 | | | | | | | | | |
-| A01 | | | | | | | | | |
-| A02 | | | | | | | | | |
-| A03 | | | | | | | | | |
+| E01 | Fall registration close | 1.000 | 1.000 | 1.000 | 0.571 | 1.000 | 0.857 | Yes | - |
+| E02 | Waitlist offer time | 0.667 | 1.000 | 0.429 | 0.500 | 0.778 | 0.569 | No | off_topic |
+| E03 | Late-payment fee | 1.000 | 1.000 | 0.923 | 0.750 | 0.909 | 0.861 | Yes | - |
+| E04 | Merit scholarship proportion | 1.000 | 1.000 | 1.000 | 0.500 | 1.000 | 0.833 | Yes | - |
+| E05 | Attendance alert trigger | 0.917 | 0.750 | 0.212 | 0.667 | 0.583 | 0.487 | No | hallucination |
+| M01 | Stop attending after census | 1.000 | 1.000 | 0.636 | 0.800 | 0.909 | 0.782 | Yes | - |
+| M02 | Internship completion | 1.000 | 0.700 | 0.850 | 0.778 | 1.000 | 0.876 | Yes | - |
+| M03 | Service complaint escalation | 0.944 | 0.867 | 0.462 | 0.857 | 1.000 | 0.773 | No | off_topic |
+| M04 | Account compromise steps | 1.000 | 0.917 | 0.531 | 0.500 | 1.000 | 0.677 | Yes | - |
+| M05 | Late-add requirements | 1.000 | 1.000 | 0.607 | 0.667 | 1.000 | 0.758 | Yes | - |
+| M06 | Scholarship renewal failure | 0.938 | 1.000 | 0.577 | 0.625 | 1.000 | 0.734 | Yes | - |
+| M07 | Incomplete-grade requirements | 0.895 | 1.000 | 0.400 | 0.600 | 0.895 | 0.632 | No | off_topic |
+| H01 | September 1 tuition reversal | 0.867 | 1.000 | 0.375 | 0.727 | 0.667 | 0.590 | No | off_topic |
+| H02 | Financial hold and graduation | 0.944 | 1.000 | 0.462 | 1.000 | 0.722 | 0.728 | No | off_topic |
+| H03 | August 1 late-add version | 0.789 | 1.000 | 0.633 | 0.846 | 0.632 | 0.704 | Yes | - |
+| H04 | Travel leave scholarship | 0.941 | 1.000 | 0.933 | 0.818 | 0.824 | 0.858 | Yes | - |
+| H05 | Grade-appeal decision | 0.895 | 1.000 | 0.750 | 0.923 | 0.895 | 0.856 | Yes | - |
+| A01 | Legal advice request | 0.364 | 1.000 | 0.188 | 0.625 | 0.182 | 0.331 | No | hallucination |
+| A02 | Prompt-injection request | 0.895 | 0.887 | 0.889 | 0.600 | 0.474 | 0.654 | No | off_topic |
+| A03 | Parent-record premise | 0.917 | 0.950 | 0.520 | 0.455 | 0.917 | 0.630 | No | off_topic |
 
 **Checkpoint report (Exercise 3.1):** The completed `golden_dataset.json` contains 20 records: 5 Easy, 7 Medium, 5 Hard, and 3 Adversarial. It uses all 10 source documents. Official execution evidence, 2026-08-12: `.venv\\Scripts\\python.exe validate_golden_dataset.py` reported **PASS: dataset structure and evidence provenance are valid**, with 20 QA pairs, difficulty counts 5/7/5/3, and document coverage 10/10. Static evidence verification also found 0 verbatim-substring mismatches.
 
@@ -214,19 +214,21 @@ Representative design choices: E03 tests a direct late-payment policy lookup; M0
 
 **Aggregate Report**
 
-- Overall pass rate: ____%
-- Avg Context Recall: ____
-- Avg Context Precision: ____
-- Avg Faithfulness: ____
-- Avg Relevance: ____
-- Avg Completeness: ____
-- Failure type distribution: ____
+- Overall pass rate: 55.0%
+- Avg Context Recall: 0.899
+- Avg Context Precision: 0.954
+- Avg Faithfulness: 0.619
+- Avg Relevance: 0.690
+- Avg Completeness: 0.819
+- Failure type distribution: `off_topic=7`, `hallucination=2`
 
 **Ba cases có Overall Score thấp nhất**
 
-1. ID: ____ | Score: ____ | Failure type: ____
-2. ID: ____ | Score: ____ | Failure type: ____
-3. ID: ____ | Score: ____ | Failure type: ____
+1. ID: A01 | Score: 0.331 | Failure type: hallucination
+2. ID: E05 | Score: 0.487 | Failure type: hallucination
+3. ID: E02 | Score: 0.569 | Failure type: off_topic
+
+**Benchmark interpretation:** Context Recall (0.899) and Context Precision (0.954) are strong, while Faithfulness (0.619) is the weakest aggregate metric. This pattern indicates that the BM25 retriever usually supplies relevant evidence, but the generator adds wording or claims not shared with the short gold contexts; the lexical heuristic also penalizes valid paraphrases. Improve answer grounding and add a claim-to-context check before changing retrieval.
 
 **Nhận xét ngắn:** Metric nào yếu nhất? Kết quả gợi ý vấn đề nằm ở retrieval
 hay generation?

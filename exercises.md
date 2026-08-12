@@ -277,21 +277,21 @@ verbosity bias và self-preference bằng cách nào?
 Chỉ làm sau khi hoàn thành 3.1–3.3. Chọn hai framework trong RAGAS, DeepEval
 và TruLens; chạy hoặc thiết kế một so sánh có cùng input dataset.
 
-| Tiêu chí | Framework 1: RAGAS (deferred) | Framework 2: DeepEval (deferred) |
+| Tiêu chí | Framework 1: RAGAS 0.4.3 | Framework 2: DeepEval 4.1.7 |
 |---|---|---|
-| Setup complexity | Deferred — framework chưa được cài | Deferred — framework chưa được cài |
-| Metrics available | Chưa chạy experiment | Chưa chạy experiment |
-| CI/CD integration | Chưa chạy experiment | Chưa chạy experiment |
-| Kết quả trên cùng dataset | N/A | N/A |
-| Insight rút ra | Không kết luận khi chưa có run thật | Không kết luận khi chưa có run thật |
+| Setup complexity | Cao hơn: cần compatibility shim cho legacy VertexAI import và local embedding adapter cho Answer Relevancy | Thấp hơn: `OpenAIModel` nhận trực tiếp model, API key và 9Router base URL |
+| Metrics available | Faithfulness, Answer Relevancy, Context Recall, Context Precision và nhiều collection metrics khác | Faithfulness, Answer Relevancy, Contextual Recall, Contextual Precision; có score/reason trên `LLMTestCase` |
+| CI/CD integration | Chạy script Python, lưu JSON artifact và verify bằng pytest | Có pytest/evaluation workflow trực tiếp; lab cũng lưu JSON và verify bằng pytest |
+| Kết quả trên cùng dataset | Mean: 0.954 / 0.638 / 0.972 / 0.960; lần lượt 18/18/18/18 case hợp lệ | Mean: 0.896 / 0.832 / 1.000 / 0.883; lần lượt 20/19/20/20 case hợp lệ |
+| Insight rút ra | Strict hơn ở Answer Relevancy; không được bỏ qua 8 lỗi gateway trên A02/A03 | Strict hơn ở Context Precision; còn 1 lỗi Answer Relevancy trên A02 |
 
 - Scores có nhất quán không?
 - Framework nào strict hơn và vì sao?
 - Hai framework có tìm ra cùng failure cases không?
 
-> *Phân tích:*
+> *Phân tích:* Experiment dùng toàn bộ 20 saved answers và cùng danh sách 2–5 retrieved contexts thực tế của từng case, model judge `gh/gpt-4o-mini`, temperature 0. Có 151/160 score hợp lệ; 9 lỗi HTTP 422 được giữ là null, không nội suy. Recall có agreement 100% và Precision 94.4% theo cùng phía ngưỡng 0.5 trên 18 cặp hợp lệ. Answer Relevancy chỉ agreement 66.7% (MAD 0.312), RAGAS flag E03/M04/M06/H03/A01 còn DeepEval flag H02. Vì vậy không có framework strict hơn toàn cục: strictness phụ thuộc metric. RAGAS Relevancy còn dùng deterministic local hashing embedding do 9Router không có embedding model, nên không được quy toàn bộ chênh lệch cho framework. Báo cáo, protocol, error ledger và lệnh tái lập nằm trong `exercise_3_4_report.md`; raw evidence nằm trong `artifacts/framework_comparison.json`.
 
-Bonus 3.4 chưa thực hiện vì phần lab này không cài hai framework production; không dùng kết quả thiết kế giả thay cho experiment thật. Phần bắt buộc và bonus reranking được ưu tiên hoàn tất trước.
+Bonus 3.4 đã chạy thật bằng `.venv`. Pilot đạt 24/24 phép chấm; full run và hai lượt retry có kiểm soát đạt 151/160, các lỗi còn lại được báo cáo minh bạch thay vì tạo kết quả giả.
 
 ### Exercise 3.5 — Retrieval Reranking (Bonus +5)
 
@@ -340,4 +340,4 @@ Hoàn thành kiểm tra cuối trong khoảng 11:50–12:00.
 - [x] Exercise 3.3 có rubric 1–5 và bias controls.
 - [x] `reflection.md` có ba failure analyses và regression strategy.
 - [x] Đã copy implementation hoàn chỉnh từ `template.py` thành `solution/solution.py`.
-- [ ] Exercise 3.4 và 3.5 chỉ làm nếu chọn bonus.
+- [x] Exercise 3.4 và 3.5 đã hoàn thành; raw artifacts và báo cáo tái lập đã được lưu.

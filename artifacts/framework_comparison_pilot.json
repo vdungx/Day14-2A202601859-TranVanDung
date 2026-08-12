@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-12T03:59:32.632551+00:00",
+  "experiment": {
+    "case_count": 3,
+    "case_ids": [
+      "E02",
+      "E05",
+      "A01"
+    ],
+    "same_saved_inputs": true,
+    "judge_model": "gh/gpt-4o-mini",
+    "base_url": "http://localhost:20128/v1",
+    "temperature": 0,
+    "threshold_for_failure_comparison": 0.5,
+    "elapsed_seconds": 252.992
+  },
+  "versions": {
+    "python": "3.12.10",
+    "ragas": "0.4.3",
+    "deepeval": "4.1.7",
+    "openai": "2.54.0"
+  },
+  "method_notes": {
+    "retrieval_context": "The exact retrieved_contexts saved in artifacts/actual_answers.json (2-5 contexts per case; no padding).",
+    "reference": "expected_answer from golden_dataset.json for both context metrics.",
+    "ragas_answer_relevancy_embedding": "Deterministic local 1024-dimensional signed hashing of tokens and bigrams; no remote embedding model was available through the configured 9Router endpoint.",
+    "ragas_vertex_import_shim_used": true,
+    "ragas_vertex_import_shim_scope": "Import-only symbol; Vertex AI is not instantiated or used.",
+    "errors": "A null score always has a non-null error; no score is imputed."
+  },
+  "results": {
+    "ragas": [
+      {
+        "id": "E02",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 4.625,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 12.191,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.209,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 2.556,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E05",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 16.896,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 12.131,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.223,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 29.511,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A01",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.5,
+            "reason": null,
+            "elapsed_seconds": 3.548,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.0,
+            "reason": null,
+            "elapsed_seconds": 12.141,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.872,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 15.562,
+            "error": null
+          }
+        }
+      }
+    ],
+    "deepeval": [
+      {
+        "id": "E02",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 15.916,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about the time frame for accepting a waitlist offer without any irrelevant statements.",
+            "elapsed_seconds": 9.96,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly reflects the information from node 1 in the retrieval context, confirming the clarity and accuracy of the statement.",
+            "elapsed_seconds": 6.984,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about the time frame for accepting a waitlist offer, while the second node, ranked lower, discusses unrelated topics and does not contribute any relevant information.",
+            "elapsed_seconds": 7.211,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E05",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 15.176,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about triggers for academic-support alerts for attendance without any irrelevant statements.",
+            "elapsed_seconds": 11.247,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly aligns with the first node in retrieval context, clearly explaining the relationship between absences and the academic-support alert.",
+            "elapsed_seconds": 7.133,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about what triggers an academic-support alert for attendance, while the subsequent nodes, starting from the second node, discuss topics such as business days, academic judgment, student services, and credit hours, which are not relevant to the question.",
+            "elapsed_seconds": 7.908,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A01",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 14.255,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the output includes an irrelevant statement about not providing legal advice, which detracts from addressing the user's request for guidance on suing their landlord.",
+            "elapsed_seconds": 11.133,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the expected output perfectly aligns with the information provided in the first node of the retrieval context, clearly outlining the scope of assistance available.",
+            "elapsed_seconds": 6.985,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides relevant information directly related to the request for legal advice about suing a landlord, while the second node, ranked second, discusses unrelated topics like academic judgment, and the third node, ranked third, focuses on deadlines and submission policies, making them less helpful.",
+            "elapsed_seconds": 7.603,
+            "error": null
+          }
+        }
+      }
+    ]
+  },
+  "summary": {
+    "ragas": {
+      "faithfulness": {
+        "mean": 0.833333,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 8.356,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": 0.666667,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 12.154,
+        "failure_ids_below_0_5": [
+          "A01"
+        ]
+      },
+      "context_recall": {
+        "mean": 1.0,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 2.435,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": 1.0,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 15.876,
+        "failure_ids_below_0_5": []
+      }
+    },
+    "deepeval": {
+      "faithfulness": {
+        "mean": 1.0,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 15.116,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": 0.833333,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 10.78,
+        "failure_ids_below_0_5": []
+      },
+      "context_recall": {
+        "mean": 1.0,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 7.034,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": 1.0,
+        "successful": 3,
+        "errors": 0,
+        "mean_elapsed_seconds": 7.574,
+        "failure_ids_below_0_5": []
+      }
+    },
+    "cross_framework_agreement": {
+      "faithfulness": {
+        "comparable_cases": 3,
+        "mean_absolute_difference": 0.166667,
+        "same_side_of_0_5": 3,
+        "agreement_rate": 1.0
+      },
+      "answer_relevancy": {
+        "comparable_cases": 3,
+        "mean_absolute_difference": 0.166667,
+        "same_side_of_0_5": 2,
+        "agreement_rate": 0.666667
+      },
+      "context_recall": {
+        "comparable_cases": 3,
+        "mean_absolute_difference": 0.0,
+        "same_side_of_0_5": 3,
+        "agreement_rate": 1.0
+      },
+      "context_precision": {
+        "comparable_cases": 3,
+        "mean_absolute_difference": 0.0,
+        "same_side_of_0_5": 3,
+        "agreement_rate": 1.0
+      }
+    }
+  }
+}

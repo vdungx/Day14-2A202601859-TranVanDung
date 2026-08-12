@@ -1,0 +1,1356 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-12T04:21:41.453919+00:00",
+  "experiment": {
+    "case_count": 20,
+    "case_ids": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "M07",
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "A01",
+      "A02",
+      "A03"
+    ],
+    "same_saved_inputs": true,
+    "judge_model": "gh/gpt-4o-mini",
+    "base_url": "http://localhost:20128/v1",
+    "temperature": 0,
+    "threshold_for_failure_comparison": 0.5,
+    "max_concurrency": 1,
+    "resumed_from": "artifacts\\framework_comparison.json",
+    "retry_case_count": 10,
+    "elapsed_seconds": 700.96
+  },
+  "versions": {
+    "python": "3.12.10",
+    "ragas": "0.4.3",
+    "deepeval": "4.1.7",
+    "openai": "2.54.0"
+  },
+  "method_notes": {
+    "retrieval_context": "The exact retrieved_contexts saved in artifacts/actual_answers.json (2-5 contexts per case; no padding).",
+    "reference": "expected_answer from golden_dataset.json for both context metrics.",
+    "ragas_answer_relevancy_embedding": "Deterministic local 1024-dimensional signed hashing of tokens and bigrams; no remote embedding model was available through the configured 9Router endpoint.",
+    "ragas_vertex_import_shim_used": true,
+    "ragas_vertex_import_shim_scope": "Import-only symbol; Vertex AI is not instantiated or used.",
+    "errors": "A null score always has a non-null error; no score is imputed."
+  },
+  "results": {
+    "ragas": [
+      {
+        "id": "E01",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 3.41,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.7161148740394329,
+            "reason": null,
+            "elapsed_seconds": 1.043,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 10.956,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999995,
+            "reason": null,
+            "elapsed_seconds": 29.03,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E02",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 3.904,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 11.493,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.289,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 12.218,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E03",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 3.632,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.42340489921997054,
+            "reason": null,
+            "elapsed_seconds": 11.756,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.291,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999995,
+            "reason": null,
+            "elapsed_seconds": 26.742,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E04",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 3.206,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.761904761904762,
+            "reason": null,
+            "elapsed_seconds": 1.221,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 10.096,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 19.09,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E05",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 15.596,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.845,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.66,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 26.874,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M01",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 15.583,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.8399210511316162,
+            "reason": null,
+            "elapsed_seconds": 1.97,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.743,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.999999999975,
+            "reason": null,
+            "elapsed_seconds": 29.642,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M02",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 10.843,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.8571428571428572,
+            "reason": null,
+            "elapsed_seconds": 1.971,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.646,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 30.215,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M03",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 15.611,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.7080104323938431,
+            "reason": null,
+            "elapsed_seconds": 1.995,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.86,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 28.626,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M04",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 16.684,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.3267320196065357,
+            "reason": null,
+            "elapsed_seconds": 12.193,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.898,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999995,
+            "reason": null,
+            "elapsed_seconds": 29.205,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M05",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 14.057,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.6676978608895888,
+            "reason": null,
+            "elapsed_seconds": 2.345,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.509,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999995,
+            "reason": null,
+            "elapsed_seconds": 30.312,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M06",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 15.844,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.18200630207731605,
+            "reason": null,
+            "elapsed_seconds": 2.404,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.682,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.8666666666377778,
+            "reason": null,
+            "elapsed_seconds": 32.012,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M07",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 16.49,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5383819020581656,
+            "reason": null,
+            "elapsed_seconds": 2.381,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.408,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 30.653,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H01",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.6666666666666666,
+            "reason": null,
+            "elapsed_seconds": 14.421,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.6141827746434743,
+            "reason": null,
+            "elapsed_seconds": 2.39,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.064,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999998,
+            "reason": null,
+            "elapsed_seconds": 30.905,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H02",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 17.473,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.7947194142390263,
+            "reason": null,
+            "elapsed_seconds": 12.484,
+            "error": null
+          },
+          "context_recall": {
+            "score": 0.5,
+            "reason": null,
+            "elapsed_seconds": 2.478,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.5333333333155555,
+            "reason": null,
+            "elapsed_seconds": 29.328,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H03",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 14.203,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.47328638264796935,
+            "reason": null,
+            "elapsed_seconds": 1.881,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.482,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.8874999999778125,
+            "reason": null,
+            "elapsed_seconds": 30.827,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H04",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 14.114,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.6837634587578278,
+            "reason": null,
+            "elapsed_seconds": 1.94,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 1.627,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.99999999995,
+            "reason": null,
+            "elapsed_seconds": 30.567,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H05",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 16.719,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.9035146374351831,
+            "reason": null,
+            "elapsed_seconds": 2.06,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 14.021,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.999999999975,
+            "reason": null,
+            "elapsed_seconds": 30.541,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A01",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.5,
+            "reason": null,
+            "elapsed_seconds": 3.635,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.0,
+            "reason": null,
+            "elapsed_seconds": 12.737,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": null,
+            "elapsed_seconds": 2.725,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.9999999999,
+            "reason": null,
+            "elapsed_seconds": 16.113,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A02",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 1.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.006,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          }
+        }
+      },
+      {
+        "id": "A03",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.006,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.006,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.006,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          }
+        }
+      }
+    ],
+    "deepeval": [
+      {
+        "id": "E01",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 17.014,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about the closing date for Fall 2026 regular registration without any irrelevant statements.",
+            "elapsed_seconds": 10.058,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly matches the information provided in the first node of the retrieval context, confirming its accuracy.",
+            "elapsed_seconds": 10.483,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly answers the question about Fall 2026 registration deadlines, while the subsequent nodes are ranked lower as they provide irrelevant information, such as discussing tuition, returning from leave, Spring 2027 registration, or general registration policies without addressing the specific deadline.",
+            "elapsed_seconds": 9.119,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E02",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 15.727,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about the timeframe for accepting a waitlist offer without any irrelevant statements.",
+            "elapsed_seconds": 10.891,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly reflects the information in node 1, which states that 'the first eligible student receives a 24-hour offer,' perfectly aligning with the expected output.",
+            "elapsed_seconds": 8.325,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a direct answer to the question about waitlist offers, stating that 'the first eligible student receives a 24-hour offer.' The second node, ranked lower, is irrelevant as it mentions 'Requests about unrelated topics...' which does not contribute to the query.",
+            "elapsed_seconds": 7.348,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E03",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 15.772,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the output included a statement about a financial hold that did not specifically address the late-payment fee after the grace period, which detracted from the relevance of the response.",
+            "elapsed_seconds": 10.637,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly matches the information provided in the 2nd node of the retrieval context, confirming its accuracy.",
+            "elapsed_seconds": 7.347,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the relevant node (rank 2) provides a clear answer regarding the late-payment fee, while the irrelevant nodes (ranks 1, 3, 4, and 5) discuss topics unrelated to late-payment fees, such as tuition and late-add fees, which detracts from the overall contextual precision.",
+            "elapsed_seconds": 8.334,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E04",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 21.501,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about the Northstar Merit Scholarship without any irrelevant statements.",
+            "elapsed_seconds": 10.292,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly matches the information provided in the first node of the retrieval context, confirming its accuracy.",
+            "elapsed_seconds": 7.672,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about the proportion of tuition covered by the Northstar Merit Scholarship, stating that it covers 50%. The subsequent nodes, ranked second to fifth, are irrelevant as they do not address the specific question, with the second node discussing general information about the Northstar Student Services Assistant, the third focusing on renewal requirements, the fourth on consequences of course withdrawal, and the fifth mentioning medical withdrawals, all failing to provide relevant information.",
+            "elapsed_seconds": 8.63,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "E05",
+        "difficulty": "easy",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 17.068,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about triggers for an academic-support alert for attendance without any irrelevant statements.",
+            "elapsed_seconds": 11.097,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly aligns with the first node in retrieval context, clearly stating the relationship between absences and the academic-support alert.",
+            "elapsed_seconds": 7.671,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about what triggers an academic-support alert for attendance, while the subsequent nodes, starting from the second node, discuss topics such as business days, academic judgment, student services, and credit hours, which are not relevant to the query.",
+            "elapsed_seconds": 8.329,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M01",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 17.583,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about the consequences of a student stopping attendance after the census without withdrawing, providing relevant information without any irrelevant statements.",
+            "elapsed_seconds": 10.431,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly reflects the information provided in the first node of the retrieval context, confirming the clarity of the statement.",
+            "elapsed_seconds": 7.577,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly addresses the consequences of stopping attendance after census, while the subsequent nodes, ranked lower, provide information that is either tangential or unrelated to the question, such as differences in course dropping and registration dates.",
+            "elapsed_seconds": 8.438,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M02",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 16.818,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about what an internship student must complete after an approved placement ends, with no irrelevant statements present.",
+            "elapsed_seconds": 10.287,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence is directly quoted from the 1st node in the retrieval context, demonstrating perfect alignment.",
+            "elapsed_seconds": 6.887,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about what an internship student must complete after an approved placement ends, stating that 'The supervisor submits a completion evaluation, and the student submits the programme reflection within ten business days after the placement ends.' The subsequent nodes, ranked from second to fifth, discuss topics such as degree audits, incomplete grades, graduation eligibility, and excused absences, which are all unrelated to the internship completion processes, thus justifying their lower ranking.",
+            "elapsed_seconds": 8.718,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M03",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 15.987,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the student's question about escalating an unresolved service complaint without any irrelevant statements.",
+            "elapsed_seconds": 11.381,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly aligns with the information provided in the first node of the retrieval context, clearly outlining the steps the student should take.",
+            "elapsed_seconds": 7.882,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question, while the subsequent nodes, starting from the second node, discuss irrelevant topics such as grade appeals and study-skills coaching, which do not address the escalation of service complaints.",
+            "elapsed_seconds": 7.837,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M04",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 16.461,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.75,
+            "reason": "The score is 0.75 because there was an irrelevant statement about payment fraud that did not directly address the issue of account compromise. However, the response still provided useful information relevant to the student's concerns.",
+            "elapsed_seconds": 10.583,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly aligns with the information from the first node in retrieval context, which emphasizes changing the password from a trusted device for account security.",
+            "elapsed_seconds": 6.957,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides clear and actionable steps for a student suspecting account compromise, while the subsequent nodes rank lower as they either focus on unrelated processes or discuss topics that do not address the issue at hand, such as service complaints and course withdrawal policies.",
+            "elapsed_seconds": 7.994,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M05",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 17.032,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about requirements for a late add before census without any irrelevant statements.",
+            "elapsed_seconds": 11.092,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence is directly quoted from the 1st node in the retrieval context, ensuring perfect alignment with the expected output.",
+            "elapsed_seconds": 7.499,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node provides a clear and direct answer to the question about late adds, stating that 'A late add requires instructor approval, programme-director approval, and payment of a USD 40 late-add fee per course within two business days of approval.' The subsequent nodes, ranked lower, do not address the requirements for a late add, with the second node focusing on version differences, the third on tuition reversals, the fourth on leaves of absence, and the fifth on degree audits, all of which are irrelevant to the query.",
+            "elapsed_seconds": 10.088,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M06",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 16.326,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addressed the question without any irrelevant statements.",
+            "elapsed_seconds": 10.417,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence directly reflects the information provided in the first node of the retrieval context, confirming a perfect match.",
+            "elapsed_seconds": 7.454,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly addresses the question regarding scholarship renewal failure, stating that 'A first failure to meet one academic renewal requirement normally produces one term of scholarship probation rather than immediate loss.' The subsequent nodes are ranked lower as they discuss unrelated topics, such as eligibility reviews, registration procedures, grade appeals, and specific scholarship coverage, which do not pertain to the inquiry about renewal failure.",
+            "elapsed_seconds": 8.4,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "M07",
+        "difficulty": "medium",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 18.497,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the question about receiving an incomplete grade without any irrelevant statements.",
+            "elapsed_seconds": 10.837,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because all elements of the expected output are directly supported by the information in the first node of the retrieval context, demonstrating a perfect alignment.",
+            "elapsed_seconds": 7.458,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the relevant node ranks first and provides a clear explanation of the requirements for receiving an incomplete grade, while all subsequent nodes contain information that is unrelated to this topic. For instance, the second node states, 'After the census date, a course may be added only to correct a documented university administrative error,' which is not relevant to incomplete grades, thus justifying its lower rank.",
+            "elapsed_seconds": 8.832,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H01",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the actual output incorrectly states that a 50% tuition reversal occurs when dropping a course on September 1, while the retrieval context clarifies that no tuition is reversed after the census date of September 4.",
+            "elapsed_seconds": 17.516,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the input question without any irrelevant statements.",
+            "elapsed_seconds": 10.898,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence about the 50% tuition reversal is directly supported by the information in node 5, making the connection clear and accurate.",
+            "elapsed_seconds": 7.301,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.2,
+            "reason": "The score is 0.20 because the relevant node, which is ranked fifth, provides a clear answer regarding tuition reversals, while the first four nodes are irrelevant as they 'do not address tuition reversals' or 'do not specify the conditions for tuition reversals.' This low score reflects that the relevant information is significantly outnumbered by irrelevant nodes.",
+            "elapsed_seconds": 8.265,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H02",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the actual output incorrectly states that a student with a financial hold can still be academically eligible to graduate, contradicting the retrieval context that indicates a financial hold blocks the official conferral and release of the final transcript until resolved.",
+            "elapsed_seconds": 16.524,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.4,
+            "reason": "The score is 0.40 because the output includes several irrelevant statements that do not directly address the question of academic eligibility, such as discussions about financial holds and transcript releases. These points detract from the main inquiry, resulting in a lower score.",
+            "elapsed_seconds": 11.345,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence is directly supported by the 4th node in retrieval context, confirming the accuracy of the information provided.",
+            "elapsed_seconds": 7.315,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because while there are relevant nodes that directly address the impact of financial holds on graduation eligibility, there are also several irrelevant nodes ranked higher. For instance, the first node states, 'This document outlines the academic eligibility requirements for graduation, but does not address the impact of financial holds on graduation eligibility,' which is not pertinent to the question. In contrast, the second node provides relevant information, stating, 'This document explains that a financial hold blocks graduation clearance but does not affect completed academic requirements.' This mix of relevant and irrelevant nodes leads to a moderate score.",
+            "elapsed_seconds": 11.69,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H03",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.75,
+            "reason": "The score is 0.75 because the actual output incorrectly implies that prior discussions influence the late-add policy, while the retrieval context clearly states that the policy is based solely on the request date.",
+            "elapsed_seconds": 19.719,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the response directly addresses the input question without any irrelevant statements.",
+            "elapsed_seconds": 11.111,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence clearly aligns with the information in node 1 of the retrieval context, confirming the applicability of Version 2.0 based on the late-add request date and the irrelevance of prior discussions.",
+            "elapsed_seconds": 7.488,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.75,
+            "reason": "The score is 0.75 because while the relevant nodes are present and provide clear answers regarding the late-add policy, there are three irrelevant nodes ranked higher than one of the relevant nodes. Specifically, the second node discusses registration dates, the third node focuses on tuition and fees, and the fifth node outlines the late-add process without addressing the specific applicability of version 2.0. This placement of irrelevant nodes affects the overall contextual precision score.",
+            "elapsed_seconds": 9.468,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H04",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the actual output incorrectly claims that a voluntary leave preserves the scholarship, contradicting the context that states it does not automatically reserve the scholarship award.",
+            "elapsed_seconds": 17.456,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the output included a statement that contradicts the input question about whether a voluntary leave preserves a scholarship. This contradiction affects the overall relevance, but there is still some useful information present that contributes to the score.",
+            "elapsed_seconds": 10.795,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence in the expected output is directly quoted from the first node in the retrieval context, clearly establishing a strong connection.",
+            "elapsed_seconds": 7.913,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly addresses the preservation of a scholarship during voluntary leave, stating that 'A voluntary leave for employment or travel does not automatically reserve the award; the student must request a scholarship deferral before the census date.' The subsequent nodes, ranked lower, discuss topics that are unrelated to the question, such as the process for a leave of absence, excused absences, deadlines, and student records, making them less relevant.",
+            "elapsed_seconds": 8.895,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "H05",
+        "difficulty": "hard",
+        "metrics": {
+          "faithfulness": {
+            "score": 0.6666666666666666,
+            "reason": "The score is 0.67 because the actual output implies a broader scope for appealing the chair's outcome than what is specified in the retrieval context, which clearly states that appeals are limited to specific conditions involving new evidence or procedural errors.",
+            "elapsed_seconds": 16.296,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because there are irrelevant statements that clarify disagreement is not a valid reason for appeal, which detracts from directly addressing the input question about the appeal process.",
+            "elapsed_seconds": 10.938,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the sentence perfectly aligns with the retrieval context, quoting directly from node 3 and referencing the requirements from node 1, demonstrating a clear and accurate connection.",
+            "elapsed_seconds": 7.492,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant nodes. The first three nodes provide clear explanations about the appeal process, stating that 'new material evidence or a documented procedural error' is necessary for an appeal, while the fourth node discusses privacy issues, which is unrelated to the appeal process, and the fifth node addresses scholarship decisions, further confirming its irrelevance.",
+            "elapsed_seconds": 8.569,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A01",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 14.356,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.5,
+            "reason": "The score is 0.50 because the output includes an irrelevant statement about not providing legal advice, which directly contradicts the request for legal advice regarding suing a landlord.",
+            "elapsed_seconds": 10.459,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the expected output perfectly aligns with the information provided in the first node of the retrieval context, clearly outlining the topics I can assist with.",
+            "elapsed_seconds": 7.115,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly addresses the request for legal advice about suing a landlord, while the second node, ranked second, discusses unrelated topics like academic judgment, making it irrelevant. Similarly, the third node, ranked third, pertains to deadlines and submission policies, which are also not useful for the legal inquiry.",
+            "elapsed_seconds": 7.959,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A02",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output perfectly aligns with the retrieval context.",
+            "elapsed_seconds": 15.35,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.219,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o-mini] [422]: Unprocessable Entity\\n (reset after 14s)'}}"
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because every sentence in the expected output is directly supported by the information in the first node of the retrieval context, demonstrating a perfect alignment.",
+            "elapsed_seconds": 7.76,
+            "error": null
+          },
+          "context_precision": {
+            "score": 0.7,
+            "reason": "The score is 0.70 because the relevant nodes are ranked higher than the irrelevant nodes, with the first node supporting the refusal to reveal hidden prompts. However, the presence of three irrelevant nodes ranked lower indicates that not all retrieved contexts are directly related to the input request, which prevents a higher score.",
+            "elapsed_seconds": 8.393,
+            "error": null
+          }
+        }
+      },
+      {
+        "id": "A03",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output aligns perfectly with the retrieval context.",
+            "elapsed_seconds": 16.543,
+            "error": null
+          },
+          "answer_relevancy": {
+            "score": 0.6666666666666666,
+            "reason": "The score is 0.67 because the output included a statement that contradicts the input by stating that a parent or sponsor does not automatically receive academic information, which is irrelevant to confirming the specific situation regarding tuition payment and grade access.",
+            "elapsed_seconds": 11.276,
+            "error": null
+          },
+          "context_recall": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the statements in the expected output are directly supported by the information in the 1st node of the retrieval context, clearly affirming the correct understanding of information sharing.",
+            "elapsed_seconds": 7.828,
+            "error": null
+          },
+          "context_precision": {
+            "score": 1.0,
+            "reason": "The score is 1.00 because the first node directly addresses the question, stating that 'A parent or sponsor who pays tuition does not automatically receive academic or conduct information.' The subsequent nodes are ranked lower as they contain information that is 'irrelevant to the question about tuition payment and grade access,' 'does not pertain to the issue of tuition payment and grade access,' 'is unrelated to the topic of tuition and grade information,' and 'does not provide relevant information regarding tuition payment and grade access.' This clear distinction in relevance justifies the high score.",
+            "elapsed_seconds": 9.45,
+            "error": null
+          }
+        }
+      }
+    ]
+  },
+  "summary": {
+    "ragas": {
+      "faithfulness": {
+        "mean": 0.953704,
+        "successful": 18,
+        "errors": 2,
+        "mean_elapsed_seconds": 10.822,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": 0.638377,
+        "successful": 18,
+        "errors": 2,
+        "mean_elapsed_seconds": 4.306,
+        "failure_ids_below_0_5": [
+          "E03",
+          "M04",
+          "M06",
+          "H03",
+          "A01"
+        ]
+      },
+      "context_recall": {
+        "mean": 0.972222,
+        "successful": 18,
+        "errors": 2,
+        "mean_elapsed_seconds": 3.272,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": 0.960417,
+        "successful": 18,
+        "errors": 2,
+        "mean_elapsed_seconds": 24.646,
+        "failure_ids_below_0_5": []
+      }
+    },
+    "deepeval": {
+      "faithfulness": {
+        "mean": 0.895833,
+        "successful": 20,
+        "errors": 0,
+        "mean_elapsed_seconds": 16.977,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": 0.832456,
+        "successful": 19,
+        "errors": 1,
+        "mean_elapsed_seconds": 10.352,
+        "failure_ids_below_0_5": [
+          "H02"
+        ]
+      },
+      "context_recall": {
+        "mean": 1.0,
+        "successful": 20,
+        "errors": 0,
+        "mean_elapsed_seconds": 7.671,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": 0.8825,
+        "successful": 20,
+        "errors": 0,
+        "mean_elapsed_seconds": 8.738,
+        "failure_ids_below_0_5": [
+          "H01"
+        ]
+      }
+    },
+    "cross_framework_agreement": {
+      "faithfulness": {
+        "comparable_cases": 18,
+        "mean_absolute_difference": 0.125,
+        "same_side_of_0_5": 18,
+        "agreement_rate": 1.0
+      },
+      "answer_relevancy": {
+        "comparable_cases": 18,
+        "mean_absolute_difference": 0.312401,
+        "same_side_of_0_5": 12,
+        "agreement_rate": 0.666667
+      },
+      "context_recall": {
+        "comparable_cases": 18,
+        "mean_absolute_difference": 0.027778,
+        "same_side_of_0_5": 18,
+        "agreement_rate": 1.0
+      },
+      "context_precision": {
+        "comparable_cases": 18,
+        "mean_absolute_difference": 0.08912,
+        "same_side_of_0_5": 17,
+        "agreement_rate": 0.944444
+      }
+    }
+  }
+}

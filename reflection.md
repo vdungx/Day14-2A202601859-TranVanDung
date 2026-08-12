@@ -9,16 +9,16 @@ answer/context trace trong `artifacts/actual_answers.json` trước khi kết lu
 
 ## 1. Benchmark Results Summary
 
-**Overall pass rate:** ____%
+**Overall pass rate:** Pending real benchmark execution. No score is reported without a completed `artifacts/actual_answers.json` produced by the provided RAG system.
 
 | Metric | Average | Min | Max | Nhận xét |
 |---|---:|---:|---:|---|
-| Context Recall | | | | |
-| Context Precision | | | | |
-| Faithfulness | | | | |
-| Relevance | | | | |
-| Completeness | | | | |
-| Overall Score | | | | |
+| Context Recall | Pending | Pending | Pending | Requires recorded retrieval traces from the real RAG run. |
+| Context Precision | Pending | Pending | Pending | Requires recorded retrieval ranking from the real RAG run. |
+| Faithfulness | Pending | Pending | Pending | Requires generated answers and gold evidence. |
+| Relevance | Pending | Pending | Pending | Requires generated answers. |
+| Completeness | Pending | Pending | Pending | Requires generated answers and expected answers. |
+| Overall Score | Pending | Pending | Pending | Must be calculated from the three answer-side metrics only. |
 
 **Score interpretation**
 

@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-12T04:40:48.166472+00:00",
+  "experiment": {
+    "case_count": 2,
+    "case_ids": [
+      "A02",
+      "A03"
+    ],
+    "same_saved_inputs": true,
+    "judge_model": "gh/gpt-4o",
+    "base_url": "http://localhost:20128/v1",
+    "temperature": 0,
+    "threshold_for_failure_comparison": 0.5,
+    "max_concurrency": 1,
+    "resumed_from": null,
+    "retry_case_count": 0,
+    "elapsed_seconds": 36.585
+  },
+  "versions": {
+    "python": "3.12.10",
+    "ragas": "0.4.3",
+    "deepeval": "4.1.7",
+    "openai": "2.54.0"
+  },
+  "method_notes": {
+    "retrieval_context": "The exact retrieved_contexts saved in artifacts/actual_answers.json (2-5 contexts per case; no padding).",
+    "reference": "expected_answer from golden_dataset.json for both context metrics.",
+    "ragas_answer_relevancy_embedding": "Deterministic local 1024-dimensional signed hashing of tokens and bigrams; no remote embedding model was available through the configured 9Router endpoint.",
+    "ragas_vertex_import_shim_used": true,
+    "ragas_vertex_import_shim_scope": "Import-only symbol; Vertex AI is not instantiated or used.",
+    "errors": "A null score always has a non-null error; no score is imputed."
+  },
+  "results": {
+    "ragas": [
+      {
+        "id": "A02",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 3.213,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.008,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.008,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.008,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          }
+        }
+      },
+      {
+        "id": "A03",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.009,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.007,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 0.008,
+            "error": "InstructorRetryException: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 30s)'}}"
+          }
+        }
+      }
+    ],
+    "deepeval": [
+      {
+        "id": "A02",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.237,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 28s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.226,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 25s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.22,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 23s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.219,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 21s)'}}"
+          }
+        }
+      },
+      {
+        "id": "A03",
+        "difficulty": "adversarial",
+        "metrics": {
+          "faithfulness": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.22,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 19s)'}}"
+          },
+          "answer_relevancy": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.238,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 16s)'}}"
+          },
+          "context_recall": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.24,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 14s)'}}"
+          },
+          "context_precision": {
+            "score": null,
+            "reason": null,
+            "elapsed_seconds": 2.226,
+            "error": "UnprocessableEntityError: Error code: 422 - {'error': {'message': '[github/gpt-4o] [422]: Unprocessable Entity\\n (reset after 12s)'}}"
+          }
+        }
+      }
+    ]
+  },
+  "summary": {
+    "ragas": {
+      "faithfulness": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 1.61,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 0.009,
+        "failure_ids_below_0_5": []
+      },
+      "context_recall": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 0.007,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 0.008,
+        "failure_ids_below_0_5": []
+      }
+    },
+    "deepeval": {
+      "faithfulness": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 2.229,
+        "failure_ids_below_0_5": []
+      },
+      "answer_relevancy": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 2.232,
+        "failure_ids_below_0_5": []
+      },
+      "context_recall": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 2.23,
+        "failure_ids_below_0_5": []
+      },
+      "context_precision": {
+        "mean": null,
+        "successful": 0,
+        "errors": 2,
+        "mean_elapsed_seconds": 2.223,
+        "failure_ids_below_0_5": []
+      }
+    },
+    "cross_framework_agreement": {
+      "faithfulness": {
+        "comparable_cases": 0,
+        "mean_absolute_difference": null,
+        "same_side_of_0_5": 0,
+        "agreement_rate": null
+      },
+      "answer_relevancy": {
+        "comparable_cases": 0,
+        "mean_absolute_difference": null,
+        "same_side_of_0_5": 0,
+        "agreement_rate": null
+      },
+      "context_recall": {
+        "comparable_cases": 0,
+        "mean_absolute_difference": null,
+        "same_side_of_0_5": 0,
+        "agreement_rate": null
+      },
+      "context_precision": {
+        "comparable_cases": 0,
+        "mean_absolute_difference": null,
+        "same_side_of_0_5": 0,
+        "agreement_rate": null
+      }
+    }
+  }
+}

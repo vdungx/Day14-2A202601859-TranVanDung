@@ -38,3 +38,12 @@ def test_committed_framework_summary_is_recomputable():
         for metric in artifact["summary"][framework].values()
     )
     assert successful == 151
+
+
+def test_quality_gate_distinguishes_lab_completion_from_production_readiness():
+    gate = json.loads((ROOT / "artifacts" / "framework_quality_gate.json").read_text(encoding="utf-8"))
+    assert gate["status"] == "complete_with_provider_limitations"
+    assert gate["lab_requirement"] == "pass"
+    assert gate["production_completeness"] == "blocked_by_provider_or_parser"
+    assert gate["coverage"] == {"successful": 151, "expected": 160, "rate": 0.94375, "errors": 9}
+    assert gate["quality_gate_policy"] == {"lab_ready": True, "production_ready": False}

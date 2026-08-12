@@ -293,6 +293,11 @@ và TruLens; chạy hoặc thiết kế một so sánh có cùng input dataset.
 
 Bonus 3.4 đã chạy thật bằng `.venv`. Pilot đạt 24/24 phép chấm; full run và hai lượt retry có kiểm soát đạt 151/160, các lỗi còn lại được báo cáo minh bạch thay vì tạo kết quả giả.
 
+Quality gate máy đọc nằm tại `artifacts/framework_quality_gate.json`; trạng thái
+`complete_with_provider_limitations` phân biệt rõ lab pass với production chưa đủ
+160/160. Dashboard demo trong `demo/` có overview, aggregate charts, case matrix,
+failure/error filters và trace inspector cho toàn bộ 20 cases.
+
 ### Exercise 3.5 — Retrieval Reranking (Bonus +5)
 
 Mục tiêu: kiểm tra việc đổi thứ tự chunks có tăng Context Precision mà không

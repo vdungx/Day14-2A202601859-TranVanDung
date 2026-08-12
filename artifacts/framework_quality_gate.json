@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-12T04:52:19.685778+00:00",
+  "status": "complete_with_provider_limitations",
+  "lab_requirement": "pass",
+  "production_completeness": "blocked_by_provider_or_parser",
+  "main_artifact": "artifacts/framework_comparison.json",
+  "coverage": {
+    "successful": 151,
+    "expected": 160,
+    "rate": 0.94375,
+    "errors": 9
+  },
+  "invariants": {
+    "same_saved_inputs": true,
+    "case_count": 20,
+    "summary_recomputed": "stored summary matches",
+    "null_score_requires_error": true,
+    "secrets_stored": false
+  },
+  "comparability": {
+    "same_judge_for_main_run": true,
+    "native_answer_relevancy_symmetric": false,
+    "reason": "RAGAS requires an embedding model; 9Router returned HTTP 400 because no OpenAI embedding provider credentials are configured. The run therefore uses a documented local hashing embedding only for RAGAS.",
+    "decision": "Do not rank framework accuracy from Answer Relevancy until both are calibrated against human labels or a shared semantic control metric."
+  },
+  "recovery_evidence": [
+    {
+      "artifact": "artifacts/framework_comparison_recovery_pilot.json",
+      "judge_model": "gh/gpt-4o",
+      "case_ids": [
+        "A02",
+        "A03"
+      ],
+      "successful": 0,
+      "expected": 16,
+      "generated_at": "2026-08-12T04:40:48.166472+00:00"
+    },
+    {
+      "artifact": "artifacts/framework_comparison_recovery_gemini_pilot.json",
+      "judge_model": "gc/gemini-2.5-flash",
+      "case_ids": [
+        "A02",
+        "A03"
+      ],
+      "successful": 11,
+      "expected": 16,
+      "generated_at": "2026-08-12T04:49:20.097840+00:00"
+    }
+  ],
+  "problems": [],
+  "quality_gate_policy": {
+    "lab_ready": true,
+    "production_ready": false
+  }
+}

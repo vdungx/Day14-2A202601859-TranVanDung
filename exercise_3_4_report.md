@@ -110,6 +110,28 @@ Mức tin cậy: **cao** cho input parity, error accounting và các thống kê
 **trung bình** cho so sánh retrieval metrics vì judge vẫn là LLM; **thấp-trung bình**
 cho so sánh Answer Relevancy vì embedding pipeline không đối xứng.
 
+## Quality gate và recovery audit bổ sung
+
+`audit_framework_comparison.py` tính lại summary, kiểm tra 20 ID, invariant
+`score=null ⇔ error!=null` và sinh
+`artifacts/framework_quality_gate.json`. Trạng thái hiện tại là
+`complete_with_provider_limitations`: yêu cầu lab pass, coverage 151/160, production
+completeness chưa pass.
+
+Hai pilot recovery không được trộn vào main run:
+
+- `gh/gpt-4o`: 0/16 phép chấm A02/A03 thành công, tiếp tục trả HTTP 422.
+- `gc/gemini-2.5-flash`: 11/16 thành công; RAGAS còn lỗi JSON structured-output.
+
+Endpoint embedding `text-embedding-3-small` qua 9Router trả HTTP 400
+`No credentials for provider: openai`. Vì vậy không thể khắc phục tính bất đối xứng
+Answer Relevancy bằng cùng semantic embedding trong environment hiện tại. Quality
+gate buộc `production_ready=false` cho đến khi có embedding provider và một full run
+160/160 bằng cùng judge/protocol.
+
+Giao diện demo trong `demo/` biểu diễn trực quan đúng trạng thái này; không che chín
+lỗi và không dùng recovery score làm điểm thay thế.
+
 ## Tài liệu framework dùng để đối chiếu API
 
 - [RAGAS — Evaluate a simple RAG system](https://docs.ragas.io/en/stable/getstarted/rag_eval/)

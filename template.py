@@ -14,7 +14,7 @@ Key concepts from lecture:
     - Continuous Improvement Loop: Evaluate → Analyze → Improve → Augment → Repeat
 
 Instructions:
-    1. Fill in every required section marked with TODO.
+    1. Required evaluation-core sections are implemented below.
     2. Do NOT change class/function signatures. The optional ``contexts``
        parameter in ``run_full_eval`` is part of the required interface.
     3. Copy this file to solution/solution.py when done.
@@ -105,7 +105,7 @@ class EvalResult:
         Returns:
             (faithfulness + relevance + completeness) / 3.0
 
-        TODO: Return mean of the three metric scores
+        Return the mean of the three metric scores.
         """
         return (self.faithfulness + self.relevance + self.completeness) / 3.0
 
@@ -337,7 +337,7 @@ def rerank_by_overlap(contexts: list[str], query: str) -> list[str]:
     Hint: sorted(contexts, key=lambda c: len(_tokenize(c) & _tokenize(query)),
                  reverse=True)
     """
-    # TODO (Bonus — Exercise 3.5): implement the reranker
+    # Bonus — Exercise 3.5: lexical overlap reranker.
     query_tokens = _tokenize(query)
     return sorted(
         contexts,
@@ -431,7 +431,10 @@ class LLMJudge:
             severity_bias:   Average score < 0.3 across all criteria
 
         Args:
-            scores_batch: List of score dicts from score_response().
+        scores_batch: List of score dicts from score_response(). For position
+                      analysis, records may also include ``position`` or
+                      ``answer_position`` set to ``"first"``/``"second"``
+                      (or 1/2) from a paired order-swap experiment.
 
         Returns:
             {
@@ -440,17 +443,32 @@ class LLMJudge:
                 "severity_bias":   bool,
             }
         """
-        values = [float(value) for item in scores_batch for value in item.get("scores", {}).values()]
-        average = sum(values) / len(values) if values else 0.0
-        first_scores = [
-            float(next(iter(item.get("scores", {}).values())))
-            for item in scores_batch if item.get("scores")
+        values = [
+            float(value)
+            for item in scores_batch
+            for value in item.get("scores", {}).values()
         ]
-        positional_bias = bool(first_scores) and sum(first_scores) / len(first_scores) > average + 0.1
+        average = sum(values) / len(values) if values else None
+        position_scores: dict[str, list[float]] = {"first": [], "second": []}
+        for item in scores_batch:
+            item_scores = [float(value) for value in item.get("scores", {}).values()]
+            if not item_scores:
+                continue
+            raw_position = item.get("position", item.get("answer_position"))
+            if raw_position in (1, "1", "first"):
+                position_scores["first"].append(sum(item_scores) / len(item_scores))
+            elif raw_position in (2, "2", "second"):
+                position_scores["second"].append(sum(item_scores) / len(item_scores))
+        has_paired_positions = all(position_scores.values())
+        positional_bias = False
+        if has_paired_positions:
+            first_average = sum(position_scores["first"]) / len(position_scores["first"])
+            second_average = sum(position_scores["second"]) / len(position_scores["second"])
+            positional_bias = first_average - second_average > 0.1
         return {
             "positional_bias": positional_bias,
-            "leniency_bias": average > 0.8,
-            "severity_bias": average < 0.3,
+            "leniency_bias": average is not None and average > 0.8,
+            "severity_bias": average is not None and average < 0.3,
         }
 
 
@@ -555,7 +573,7 @@ class BenchmarkRunner:
               - 'regressions': list[str] — names of metrics that regressed
               - 'passed': bool — True if no regressions
 
-        TODO: Compute avg per metric, compare, list regressions, set passed flag
+        Compute average per metric, compare, list regressions, and set passed.
         """
         def average(items: list, field: str) -> float:
             return sum(getattr(item, field) for item in items) / len(items) if items else 0.0
@@ -669,14 +687,29 @@ class FailureAnalyzer:
         Returns:
             Markdown table string with a row per failure. Status is always "Open".
 
-        TODO: Build markdown table with failure details + matched suggestions
+        Build a Markdown table with failure details and matched suggestions.
         """
         lines = [
             "| Failure ID | Type | Root Cause | Suggested Fix | Status |",
             "|------------|------|------------|---------------|--------|",
         ]
+        suggestion_keywords = {
+            "hallucination": ("ground", "unsupported", "hallucination"),
+            "irrelevant": ("intent", "prompt", "routing"),
+            "incomplete": ("complete", "condition", "retrieval coverage"),
+            "off_topic": ("intent", "answer-the-question", "routing"),
+            "refusal": ("guardrail", "safe", "refusal"),
+        }
         for index, failure in enumerate(failures, start=1):
-            suggestion = suggestions[index - 1] if index <= len(suggestions) else "Review and prioritize a targeted fix"
+            keywords = suggestion_keywords.get(failure.failure_type or "", ())
+            suggestion = next(
+                (
+                    candidate
+                    for candidate in suggestions
+                    if any(keyword in candidate.lower() for keyword in keywords)
+                ),
+                "Review and prioritize a targeted fix for this failure type",
+            )
             lines.append(
                 f"| F{index:03d} | {failure.failure_type or 'unknown'} | {self.find_root_cause(failure)} | {suggestion} | Open |"
             )

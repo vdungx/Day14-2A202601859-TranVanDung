@@ -1,15 +1,15 @@
 {
   "summary": {
     "total": 20,
-    "passed": 11,
-    "pass_rate": 0.55,
-    "avg_faithfulness": 0.6188290806415806,
+    "passed": 12,
+    "pass_rate": 0.6,
+    "avg_faithfulness": 0.6512457473082474,
     "avg_relevance": 0.6904456654456654,
     "avg_completeness": 0.8192466460268317,
     "avg_context_recall": 0.8985776300153235,
     "avg_context_precision": 0.9535416666666666,
     "failure_types": {
-      "off_topic": 7,
+      "off_topic": 6,
       "hallucination": 2
     }
   },
@@ -187,14 +187,14 @@
       "difficulty": "hard",
       "question": "A student drops a Fall 2026 course on September 1. What tuition reversal applies?",
       "actual_answer": "If a student drops a Fall 2026 course on September 1, 50% of that course's tuition is reversed, as this date falls between the end of the standard add/drop period (August 28) and the census date (September 4).",
-      "faithfulness": 0.375,
+      "faithfulness": 0.5833333333333334,
       "relevance": 0.7272727272727273,
       "completeness": 0.6666666666666666,
       "context_recall": 0.8666666666666667,
       "context_precision": 1.0,
-      "overall": 0.5896464646464646,
-      "passed": false,
-      "failure_type": "off_topic"
+      "overall": 0.6590909090909091,
+      "passed": true,
+      "failure_type": null
     },
     {
       "id": "H02",
@@ -285,19 +285,19 @@
       "difficulty": "adversarial",
       "question": "My parent pays my tuition, so they can automatically receive my grades. Confirm this.",
       "actual_answer": "No, a parent or sponsor who pays tuition does not automatically receive academic or conduct information. The university may only discuss a student's record with the student or a person who has valid, recorded authorization.",
-      "faithfulness": 0.52,
+      "faithfulness": 0.96,
       "relevance": 0.45454545454545453,
       "completeness": 0.9166666666666666,
       "context_recall": 0.9166666666666666,
       "context_precision": 0.95,
-      "overall": 0.6304040404040404,
+      "overall": 0.777070707070707,
       "passed": false,
       "failure_type": "off_topic"
     }
   ],
   "failure_analysis": {
     "counts": {
-      "off_topic": 7,
+      "off_topic": 6,
       "hallucination": 2
     },
     "suggestions": [
@@ -305,6 +305,6 @@
       "Add a grounding check that removes unsupported claims before returning an answer.",
       "Add the observed failures to the golden dataset as regression tests."
     ],
-    "improvement_log": "| Failure ID | Type | Root Cause | Suggested Fix | Status |\n|------------|------|------------|---------------|--------|\n| F001 | off_topic | Context is missing or irrelevant — improve retrieval | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F002 | hallucination | Context is missing or irrelevant — improve retrieval | Add a grounding check that removes unsupported claims before returning an answer. | Open |\n| F003 | off_topic | Context is missing or irrelevant — improve retrieval | Add the observed failures to the golden dataset as regression tests. | Open |\n| F004 | off_topic | Context is missing or irrelevant — improve retrieval | Review and prioritize a targeted fix | Open |\n| F005 | off_topic | Context is missing or irrelevant — improve retrieval | Review and prioritize a targeted fix | Open |\n| F006 | off_topic | Context is missing or irrelevant — improve retrieval | Review and prioritize a targeted fix | Open |\n| F007 | hallucination | Answer is missing key information — increase context window or improve generation | Review and prioritize a targeted fix | Open |\n| F008 | off_topic | Answer is missing key information — increase context window or improve generation | Review and prioritize a targeted fix | Open |\n| F009 | off_topic | Answer does not address the question — improve prompt clarity | Review and prioritize a targeted fix | Open |"
+    "improvement_log": "| Failure ID | Type | Root Cause | Suggested Fix | Status |\n|------------|------|------------|---------------|--------|\n| F001 | off_topic | Context is missing or irrelevant — improve retrieval | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F002 | hallucination | Context is missing or irrelevant — improve retrieval | Add a grounding check that removes unsupported claims before returning an answer. | Open |\n| F003 | off_topic | Context is missing or irrelevant — improve retrieval | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F004 | off_topic | Context is missing or irrelevant — improve retrieval | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F005 | off_topic | Context is missing or irrelevant — improve retrieval | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F006 | hallucination | Answer is missing key information — increase context window or improve generation | Add a grounding check that removes unsupported claims before returning an answer. | Open |\n| F007 | off_topic | Answer is missing key information — increase context window or improve generation | Add intent detection and an explicit answer-the-question guardrail. | Open |\n| F008 | off_topic | Answer does not address the question — improve prompt clarity | Add intent detection and an explicit answer-the-question guardrail. | Open |"
   }
 }

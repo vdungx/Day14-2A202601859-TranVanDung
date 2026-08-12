@@ -46,15 +46,15 @@ Ba bias thường gặp:
 
 **Câu 1: Thiết kế experiment phát hiện position bias với ít nhất hai conditions.**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Tạo các cặp response A/B có chất lượng cố định và chấm hai conditions: Condition 1 trình bày A trước B; Condition 2 đảo B trước A. Randomize thứ tự trên toàn bộ 20 câu, giữ nguyên prompt/rubric/model, rồi so score của cùng một response giữa hai vị trí. Nếu response ở vị trí đầu nhận điểm cao hơn có hệ thống (ví dụ mean paired delta > 0.10 và lặp lại trên phần lớn cặp), judge có position bias.
 
 **Câu 2: Làm thế nào giảm verbosity bias bằng rubric design?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Rubric chỉ cấp điểm cho required facts, conditions, evidence, safety và actionability; không cấp điểm cho độ dài. Nội dung lặp, ngoài câu hỏi hoặc claim không có evidence không được cộng điểm và có thể bị trừ ở Relevance/Faithfulness. Calibration set cần có cả response ngắn đạt điểm 5 và response dài nhưng nhiều noise đạt điểm thấp.
 
 **Câu 3: Tại sao cần calibrate LLM judge với human labels?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Human labels là chuẩn tham chiếu để kiểm tra judge có hiểu đúng policy, exceptions và safety/privacy hay không. So sánh judge–human giúp phát hiện leniency, severity, position và self-preference bias; từ đó điều chỉnh rubric/threshold trước khi dùng judge làm quality gate.
 
 ### Exercise 1.3 — Evaluation trong CI/CD
 
@@ -68,7 +68,7 @@ Ba bias thường gặp:
 
 **Câu 2: Khi nào dùng offline evaluation, online evaluation và human review?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Chạy offline evaluation trên Golden Dataset sau mỗi thay đổi code, prompt, retriever, model và trước release. Dùng online evaluation sau deploy để theo dõi traffic mẫu, latency, cost, drift và failure mới. Human review bắt buộc cho privacy/safety, appeal, trường hợp score thấp hoặc bất đồng giữa lexical metrics và trace; nhãn human được đưa lại vào bộ calibration/regression.
 
 ---
 
@@ -148,31 +148,31 @@ và quyết định thiết kế, không chép lại toàn bộ QA.
 
 | Hạng mục | Kết quả |
 |---|---|
-| Tổng số records | ____ / 20 |
-| Easy | ____ / 5 |
-| Medium | ____ / 7 |
-| Hard | ____ / 5 |
-| Adversarial | ____ / 3 |
-| Source documents được sử dụng | ____ / 10 |
-| Validator status | PASS / FAIL |
+| Tổng số records | 20 / 20 |
+| Easy | 5 / 5 |
+| Medium | 7 / 7 |
+| Hard | 5 / 5 |
+| Adversarial | 3 / 3 |
+| Source documents được sử dụng | 10 / 10 |
+| Validator status | PASS |
 
 **Ba case đại diện cho quyết định thiết kế**
 
 | ID | Difficulty | Source document(s) | Vì sao case phù hợp với difficulty/attack type? |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| E03 | Easy | `03_tuition_payment_refund.md` | Factual lookup trực tiếp một khoản phí USD 75 từ một đoạn nguồn. |
+| M05 | Medium | `02_course_registration.md`, `03_tuition_payment_refund.md` | Kết hợp approvals, số tiền và thời hạn thanh toán từ hai chính sách. |
+| H03 | Hard | `09_privacy_security_and_policy_updates.md`, `02_course_registration.md` | Phải chọn policy version theo event date và không bị đánh lạc hướng bởi cuộc trao đổi trong tháng 7. |
 
 **Điểm khó nhất khi xây dựng expected answer hoặc evidence là gì?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Khó nhất là viết expected answer đủ dates, amounts, conditions và exceptions nhưng vẫn ngắn, đồng thời chọn evidence nguyên văn hỗ trợ từng claim. Review semantic phát hiện H01, A01 và A03 ban đầu thiếu một phần evidence; các contexts đã được bổ sung và validator chạy lại vẫn PASS.
 
 **Xác nhận:**
 
-- [ ] Mọi claim trong expected answer đều có evidence hỗ trợ.
-- [ ] Không có questions trùng ý và không dùng kiến thức ngoài corpus.
-- [ ] `python validate_golden_dataset.py` báo `PASS`.
+- [x] Mọi claim trong expected answer đều có evidence hỗ trợ.
+- [x] Không có questions trùng ý và không dùng kiến thức ngoài corpus.
+- [x] `.venv\Scripts\python.exe validate_golden_dataset.py` báo `PASS`.
 
 ### Exercise 3.2 — Benchmark Run
 
@@ -199,14 +199,14 @@ Copy bảng terminal vào đây hoặc điền từ `artifacts/benchmark_results
 | M05 | Late-add requirements | 1.000 | 1.000 | 0.607 | 0.667 | 1.000 | 0.758 | Yes | - |
 | M06 | Scholarship renewal failure | 0.938 | 1.000 | 0.577 | 0.625 | 1.000 | 0.734 | Yes | - |
 | M07 | Incomplete-grade requirements | 0.895 | 1.000 | 0.400 | 0.600 | 0.895 | 0.632 | No | off_topic |
-| H01 | September 1 tuition reversal | 0.867 | 1.000 | 0.375 | 0.727 | 0.667 | 0.590 | No | off_topic |
+| H01 | September 1 tuition reversal | 0.867 | 1.000 | 0.583 | 0.727 | 0.667 | 0.659 | Yes | - |
 | H02 | Financial hold and graduation | 0.944 | 1.000 | 0.462 | 1.000 | 0.722 | 0.728 | No | off_topic |
 | H03 | August 1 late-add version | 0.789 | 1.000 | 0.633 | 0.846 | 0.632 | 0.704 | Yes | - |
 | H04 | Travel leave scholarship | 0.941 | 1.000 | 0.933 | 0.818 | 0.824 | 0.858 | Yes | - |
 | H05 | Grade-appeal decision | 0.895 | 1.000 | 0.750 | 0.923 | 0.895 | 0.856 | Yes | - |
 | A01 | Legal advice request | 0.364 | 1.000 | 0.188 | 0.625 | 0.182 | 0.331 | No | hallucination |
 | A02 | Prompt-injection request | 0.895 | 0.887 | 0.889 | 0.600 | 0.474 | 0.654 | No | off_topic |
-| A03 | Parent-record premise | 0.917 | 0.950 | 0.520 | 0.455 | 0.917 | 0.630 | No | off_topic |
+| A03 | Parent-record premise | 0.917 | 0.950 | 0.960 | 0.455 | 0.917 | 0.777 | No | off_topic |
 
 **Checkpoint report (Exercise 3.1):** The completed `golden_dataset.json` contains 20 records: 5 Easy, 7 Medium, 5 Hard, and 3 Adversarial. It uses all 10 source documents. Official execution evidence, 2026-08-12: `.venv\\Scripts\\python.exe validate_golden_dataset.py` reported **PASS: dataset structure and evidence provenance are valid**, with 20 QA pairs, difficulty counts 5/7/5/3, and document coverage 10/10. Static evidence verification also found 0 verbatim-substring mismatches.
 
@@ -214,13 +214,13 @@ Representative design choices: E03 tests a direct late-payment policy lookup; M0
 
 **Aggregate Report**
 
-- Overall pass rate: 55.0%
+- Overall pass rate: 60.0%
 - Avg Context Recall: 0.899
 - Avg Context Precision: 0.954
-- Avg Faithfulness: 0.619
+- Avg Faithfulness: 0.651
 - Avg Relevance: 0.690
 - Avg Completeness: 0.819
-- Failure type distribution: `off_topic=7`, `hallucination=2`
+- Failure type distribution: `off_topic=6`, `hallucination=2`
 
 **Ba cases có Overall Score thấp nhất**
 
@@ -228,12 +228,12 @@ Representative design choices: E03 tests a direct late-payment policy lookup; M0
 2. ID: E05 | Score: 0.487 | Failure type: hallucination
 3. ID: E02 | Score: 0.569 | Failure type: off_topic
 
-**Benchmark interpretation:** Context Recall (0.899) and Context Precision (0.954) are strong, while Faithfulness (0.619) is the weakest aggregate metric. This pattern indicates that the BM25 retriever usually supplies relevant evidence, but the generator adds wording or claims not shared with the short gold contexts; the lexical heuristic also penalizes valid paraphrases. Improve answer grounding and add a claim-to-context check before changing retrieval.
+**Benchmark interpretation:** Context Recall (0.899) and Context Precision (0.954) are strong, while Faithfulness (0.651) is the weakest aggregate metric. This pattern indicates that BM25 thường lấy đúng evidence; phần giảm điểm chủ yếu đến từ answer mở rộng ngoài gold excerpt và hạn chế lexical overlap. Khi tính chẩn đoán Faithfulness trên retrieved contexts thật, trung bình tăng từ 0.651 lên 0.818; vì vậy cần review trace/LLM judge trước khi kết luận hallucination.
 
 **Nhận xét ngắn:** Metric nào yếu nhất? Kết quả gợi ý vấn đề nằm ở retrieval
 hay generation?
 
-> *Câu trả lời:*
+> *Câu trả lời:* Faithfulness là metric yếu nhất (0.651). Recall 0.899 và Precision 0.954 cho thấy retrieval không phải bottleneck chính. Trace cho thấy nhiều answer đúng nhưng dùng thêm evidence từ retrieved chunks hoặc paraphrase khác gold excerpt; vấn đề nằm ở generation focus và validity của heuristic nhiều hơn ở retrieval.
 
 ### Exercise 3.3 — LLM-as-a-Judge Rubric Design
 
@@ -242,14 +242,14 @@ hai người chấm độc lập có thể hiểu giống nhau.
 
 Chọn 3–5 dimensions:
 
-- [ ] Correctness
-- [ ] Completeness
-- [ ] Relevance
-- [ ] Evidence/citation
+- [x] Correctness
+- [x] Completeness
+- [x] Relevance
+- [x] Evidence/citation
 - [ ] Actionability
-- [ ] Safety/privacy
+- [x] Safety/privacy
 - [ ] Tone/clarity
-- [ ] Dimension khác: __________
+- [ ] Dimension khác: N/A
 
 | Score | Tiêu chí domain-specific | Ví dụ response |
 |---:|---|---|
@@ -263,33 +263,35 @@ Chọn 3–5 dimensions:
 
 | Edge Case | Tại sao khó chấm? | Rubric xử lý thế nào? |
 |---|---|---|
-| | | |
-| | | |
-| | | |
+| Safe refusal ngoài scope | Lexical overlap thấp dù behavior an toàn và đúng. | Correctness/Safety có thể đạt tối đa; Completeness yêu cầu redirect sang chủ đề Northstar được hỗ trợ. |
+| Đúng policy nhưng thêm thông tin liên quan | Phần bổ sung có thể nằm trong retrieved context nhưng ngoài gold excerpt. | Chỉ trừ Evidence khi claim thật sự không có trong retrieved evidence; trừ Relevance nếu phần thêm gây nhiễu. |
+| Câu hỏi có false premise về privacy | Answer phải phủ định premise, không chỉ trả lời yes/no. | Safety là hard constraint: xác nhận premise sai hoặc lộ record làm score tối đa bằng 1. |
 
 **Bias controls:** Rubric hoặc evaluation protocol của bạn giảm position bias,
 verbosity bias và self-preference bằng cách nào?
 
-> *Câu trả lời:*
+> *Câu trả lời:* Position bias được kiểm soát bằng paired A/B và B/A order, randomization và so paired delta. Verbosity bias được giảm bằng cách không thưởng độ dài, chỉ chấm required claims và trừ noise/unsupported claims. Self-preference được giảm bằng judge khác model generator, nhiều judge khi có thể và calibration với human labels. Privacy/safety là hard constraint, không được bù bằng văn phong tốt.
 
 ### Exercise 3.4 — Framework Comparison (Bonus +10)
 
 Chỉ làm sau khi hoàn thành 3.1–3.3. Chọn hai framework trong RAGAS, DeepEval
 và TruLens; chạy hoặc thiết kế một so sánh có cùng input dataset.
 
-| Tiêu chí | Framework 1: ____ | Framework 2: ____ |
+| Tiêu chí | Framework 1: RAGAS (deferred) | Framework 2: DeepEval (deferred) |
 |---|---|---|
-| Setup complexity | | |
-| Metrics available | | |
-| CI/CD integration | | |
-| Kết quả trên cùng dataset | | |
-| Insight rút ra | | |
+| Setup complexity | Deferred — framework chưa được cài | Deferred — framework chưa được cài |
+| Metrics available | Chưa chạy experiment | Chưa chạy experiment |
+| CI/CD integration | Chưa chạy experiment | Chưa chạy experiment |
+| Kết quả trên cùng dataset | N/A | N/A |
+| Insight rút ra | Không kết luận khi chưa có run thật | Không kết luận khi chưa có run thật |
 
 - Scores có nhất quán không?
 - Framework nào strict hơn và vì sao?
 - Hai framework có tìm ra cùng failure cases không?
 
 > *Phân tích:*
+
+Bonus 3.4 chưa thực hiện vì phần lab này không cài hai framework production; không dùng kết quả thiết kế giả thay cho experiment thật. Phần bắt buộc và bonus reranking được ưu tiên hoàn tất trước.
 
 ### Exercise 3.5 — Retrieval Reranking (Bonus +5)
 
@@ -304,20 +306,20 @@ thay đổi Context Recall hay không.
 
 | ID | Recall before | Recall after | Precision before | Precision after | Delta Precision |
 |---|---:|---:|---:|---:|---:|
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| **Avg** | | | | | |
+| E05 | 0.917 | 0.917 | 0.750 | 1.000 | +0.250 |
+| M02 | 1.000 | 1.000 | 0.700 | 0.806 | +0.106 |
+| M03 | 0.944 | 0.944 | 0.867 | 0.867 | +0.000 |
+| A02 | 0.895 | 0.895 | 0.887 | 1.000 | +0.113 |
+| A03 | 0.917 | 0.917 | 0.950 | 1.000 | +0.050 |
+| **Avg** | **0.935** | **0.935** | **0.831** | **0.935** | **+0.104** |
 
 **Tại sao Recall dự kiến không đổi?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Recall đo union coverage của cùng tập chunks. Reranking chỉ đổi thứ tự, không thêm hoặc xóa token/chunk, nên union và Recall giữ nguyên; 5/5 cases xác nhận điều này.
 
 **Khi nào reranking không đủ và cần sửa retriever/query/chunking?**
 
-> *Câu trả lời:*
+> *Câu trả lời:* Reranking không đủ khi relevant evidence chưa được retrieve (Recall thấp), query thiếu intent/entity/date, chunk bị cắt mất điều kiện hoặc corpus không có câu trả lời. Khi đó phải sửa query expansion, BM25/embedding retrieval, top-k, chunk boundaries hoặc source data thay vì chỉ đổi thứ tự.
 
 ---
 
@@ -331,11 +333,11 @@ Hoàn thành `reflection.md` bằng kết quả thật từ Exercise 3.2.
 
 Hoàn thành kiểm tra cuối trong khoảng 11:50–12:00.
 
-- [ ] Tất cả required tests pass.
-- [ ] `golden_dataset.json` validate thành công.
-- [ ] Exercise 3.1 hoàn thành trong file JSON và bảng kết quả phía trên.
-- [ ] Exercise 3.2 có năm metrics, aggregate report và ba cases thấp nhất.
-- [ ] Exercise 3.3 có rubric 1–5 và bias controls.
-- [ ] `reflection.md` có ba failure analyses và regression strategy.
-- [ ] Đã copy `template.py` thành `solution/solution.py`.
+- [x] Tất cả required tests pass (42/42).
+- [x] `golden_dataset.json` validate thành công (20 QA, 10/10 documents).
+- [x] Exercise 3.1 hoàn thành trong file JSON và bảng kết quả phía trên.
+- [x] Exercise 3.2 có năm metrics, aggregate report và ba cases thấp nhất.
+- [x] Exercise 3.3 có rubric 1–5 và bias controls.
+- [x] `reflection.md` có ba failure analyses và regression strategy.
+- [x] Đã copy implementation hoàn chỉnh từ `template.py` thành `solution/solution.py`.
 - [ ] Exercise 3.4 và 3.5 chỉ làm nếu chọn bonus.

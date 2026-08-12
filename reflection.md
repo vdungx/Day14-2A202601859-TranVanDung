@@ -9,7 +9,7 @@ answer/context trace trong `artifacts/actual_answers.json` trước khi kết lu
 
 ## 1. Benchmark Results Summary
 
-**Overall pass rate:** Pending real benchmark execution. No score is reported without a completed `artifacts/actual_answers.json` produced by the provided RAG system.
+**Overall pass rate:** Pending real benchmark execution. Core verification is complete: 42/42 public unit tests passed and the Golden Dataset validator passed on 2026-08-12. No benchmark score is reported without a completed `artifacts/actual_answers.json` produced by the provided RAG system. The RAG run is currently blocked only because `.env` does not contain `OPENAI_API_KEY`.
 
 | Metric | Average | Min | Max | Nhận xét |
 |---|---:|---:|---:|---|

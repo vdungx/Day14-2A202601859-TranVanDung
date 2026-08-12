@@ -129,7 +129,7 @@ Kiểm tra:
 pytest tests/ -v
 ```
 
-**Checkpoint implementation report (Part 2):** Completed all required TODOs in `template.py`: typed data models; five bounded word-overlap metrics; rank-aware Average Precision; optional retrieval-metric wiring; JSON-backed mockable LLM judge; benchmark reporting and regression gate; failure clustering, root-cause mapping, suggestions, and Markdown improvement log. The optional lexical reranker is also implemented. Evidence: implementation in `template.py`; public acceptance criteria in `tests/test_solution.py`. Execution evidence is pending: on 2026-08-12, neither `python` nor the Windows `py` launcher is installed or available on PATH in this workspace. No test-pass claim is made until a Python 3.11+ runtime is available.
+**Checkpoint implementation report (Part 2):** Completed all required TODOs in `template.py`: typed data models; five bounded word-overlap metrics; rank-aware Average Precision; optional retrieval-metric wiring; JSON-backed mockable LLM judge; benchmark reporting and regression gate; failure clustering, root-cause mapping, suggestions, and Markdown improvement log. The optional lexical reranker is also implemented. Official execution evidence, 2026-08-12: `.venv\\Scripts\\python.exe -m pytest tests/ -v` completed successfully with **42 passed in 0.06s** under Python 3.12.10. The supplied tests cover metrics, retrieval wiring, runner, judge, regression, failure analysis, and the bonus reranker.
 
 `rerank_by_overlap()` là TODO bonus của Exercise 3.5. Test tương ứng được skip
 nếu bạn chưa làm bonus.
@@ -208,7 +208,7 @@ Copy bảng terminal vào đây hoặc điền từ `artifacts/benchmark_results
 | A02 | | | | | | | | | |
 | A03 | | | | | | | | | |
 
-**Checkpoint report (Exercise 3.1):** The completed `golden_dataset.json` contains 20 records: 5 Easy, 7 Medium, 5 Hard, and 3 Adversarial. It uses all 10 source documents. Static evidence verification on 2026-08-12 parsed the JSON successfully and checked every context text as a verbatim substring of its declared source document: 0 evidence mismatches. The official Python validator remains pending until Python 3.11+ is available on PATH.
+**Checkpoint report (Exercise 3.1):** The completed `golden_dataset.json` contains 20 records: 5 Easy, 7 Medium, 5 Hard, and 3 Adversarial. It uses all 10 source documents. Official execution evidence, 2026-08-12: `.venv\\Scripts\\python.exe validate_golden_dataset.py` reported **PASS: dataset structure and evidence provenance are valid**, with 20 QA pairs, difficulty counts 5/7/5/3, and document coverage 10/10. Static evidence verification also found 0 verbatim-substring mismatches.
 
 Representative design choices: E03 tests a direct late-payment policy lookup; M05 combines late-add approvals with the payment deadline across two documents; H03 tests event-date policy-version selection; A01/A02/A03 exercise scope refusal, prompt-injection resistance, and false-premise correction. Expected answers are English, concise, and preserve policy conditions, dates, amounts, and exceptions.
 

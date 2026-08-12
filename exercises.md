@@ -30,11 +30,11 @@ critical.
 
 | Metric | Acceptable Low Score Scenario | Critical Low Score Scenario | Action Required |
 |---|---|---|---|
-| Faithfulness | | | |
-| Answer Relevance | | | |
-| Context Recall | | | |
-| Context Precision | | | |
-| Completeness | | | |
+| Faithfulness | A short, clearly labelled refusal for an out-of-scope or evidence-free request may have low lexical grounding but is still safe. | A student-services answer introduces unsupported dates, fees, eligibility, or private-data claims. | Block unsafe factual answers; inspect retrieved evidence and add grounding checks. |
+| Answer Relevance | A deliberately narrow clarification can score low when the question is genuinely ambiguous. | The answer addresses a different policy or ignores the student's requested action. | Improve intent routing and require the answer to address every requested part. |
+| Context Recall | A non-answerable/out-of-scope request need not retrieve policy evidence beyond the scope rule. | Required policy conditions, deadlines, or exceptions are absent from retrieved chunks. | Improve query formulation, chunking, or retrieval coverage. |
+| Context Precision | A broad multi-part question may retrieve a small amount of supporting background noise. | Relevant evidence is buried behind unrelated chunks, increasing generator distraction. | Add reranking or source-aware retrieval filtering. |
+| Completeness | A concise answer can omit optional detail while retaining all requested requirements. | It omits a required deadline, amount, condition, exception, or next step. | Add completeness checks and few-shot examples for multi-condition answers. |
 
 ### Exercise 1.2 — Bias trong LLM-as-a-Judge
 
@@ -62,9 +62,9 @@ Ba bias thường gặp:
 
 | Metric | Threshold | Lý do |
 |---|---:|---|
-| Faithfulness | | |
-| Answer Relevance | | |
-| Completeness | | |
+| Faithfulness | 0.80 | Unsupported policy claims can mislead students; block deployment until grounding is restored. |
+| Answer Relevance | 0.70 | A response that misses the request creates operational friction and should fail the quality gate. |
+| Completeness | 0.75 | Missing conditions, deadlines, or exceptions can cause incorrect student actions. |
 
 **Câu 2: Khi nào dùng offline evaluation, online evaluation và human review?**
 
@@ -128,6 +128,8 @@ Kiểm tra:
 ```bash
 pytest tests/ -v
 ```
+
+**Checkpoint implementation report (Part 2):** Completed all required TODOs in `template.py`: typed data models; five bounded word-overlap metrics; rank-aware Average Precision; optional retrieval-metric wiring; JSON-backed mockable LLM judge; benchmark reporting and regression gate; failure clustering, root-cause mapping, suggestions, and Markdown improvement log. The optional lexical reranker is also implemented. Evidence: implementation in `template.py`; public acceptance criteria in `tests/test_solution.py`. Execution evidence is pending: on 2026-08-12, neither `python` nor the Windows `py` launcher is installed or available on PATH in this workspace. No test-pass claim is made until a Python 3.11+ runtime is available.
 
 `rerank_by_overlap()` là TODO bonus của Exercise 3.5. Test tương ứng được skip
 nếu bạn chưa làm bonus.
@@ -205,6 +207,10 @@ Copy bảng terminal vào đây hoặc điền từ `artifacts/benchmark_results
 | A01 | | | | | | | | | |
 | A02 | | | | | | | | | |
 | A03 | | | | | | | | | |
+
+**Checkpoint report (Exercise 3.1):** The completed `golden_dataset.json` contains 20 records: 5 Easy, 7 Medium, 5 Hard, and 3 Adversarial. It uses all 10 source documents. Static evidence verification on 2026-08-12 parsed the JSON successfully and checked every context text as a verbatim substring of its declared source document: 0 evidence mismatches. The official Python validator remains pending until Python 3.11+ is available on PATH.
+
+Representative design choices: E03 tests a direct late-payment policy lookup; M05 combines late-add approvals with the payment deadline across two documents; H03 tests event-date policy-version selection; A01/A02/A03 exercise scope refusal, prompt-injection resistance, and false-premise correction. Expected answers are English, concise, and preserve policy conditions, dates, amounts, and exceptions.
 
 **Aggregate Report**
 

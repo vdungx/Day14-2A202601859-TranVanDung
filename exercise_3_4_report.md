@@ -130,7 +130,11 @@ gate buộc `production_ready=false` cho đến khi có embedding provider và m
 160/160 bằng cùng judge/protocol.
 
 Giao diện demo trong `demo/` biểu diễn trực quan đúng trạng thái này; không che chín
-lỗi và không dùng recovery score làm điểm thay thế.
+lỗi và không dùng recovery score làm điểm thay thế. Bản demo có chuyển đổi toàn trang
+Việt/Anh, chú giải tám thuật ngữ, biểu đồ coverage, threshold agreement, điểm trung
+bình theo framework và hồ sơ theo độ khó. Khối **Diễn giải** chuyển các số liệu thành
+bốn nhận xét có kiểm soát: mỗi framework dẫn hai metric, Answer Relevancy có bất đồng
+lớn nhất, coverage là 72/80 so với 79/80, và không có framework thắng tuyệt đối.
 
 ## Tài liệu framework dùng để đối chiếu API
 

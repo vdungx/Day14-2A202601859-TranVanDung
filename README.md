@@ -298,6 +298,10 @@ Bonus không thay thế phần điểm bắt buộc:
 | Exercise 3.4 — so sánh hai evaluation frameworks | +10 |
 | Exercise 3.5 — reranking và phân tích retrieval metrics | +5 |
 
+Demo minh chứng trong `demo/` hỗ trợ Việt/Anh và cho phép đọc so sánh RAGAS–DeepEval
+bằng cả biểu đồ lẫn diễn giải bằng lời. Phần diễn giải luôn hiển thị coverage bên cạnh
+mean và không suy diễn framework có điểm cao hơn là framework chính xác hơn.
+
 > **Benchmark score không quyết định điểm lab.** LLM output có thể thay đổi theo
 > model và từng lần chạy. Điểm được chấm dựa trên pipeline đúng, dataset có chất
 > lượng, evidence hợp lệ và phân tích có căn cứ — không dựa trên việc pass rate
